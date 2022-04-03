@@ -56,11 +56,7 @@ if (error) return "Error!";
                   </tr>
                 </tbody>
               </table>
-              <UpdateTask taskId={task.id}
-                taskName={task.taskname}
-                dateDue={task.datedue}  
-                reminDer={task.reminder}
-               />
+              <UpdateTask taskId={task.id}/>
             </li>
           ))}
         </ul>
