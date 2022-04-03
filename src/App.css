@@ -2,37 +2,136 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  background-color: teal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App-header{
+  color:white;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/*List tasks section*/
+
+.task-list{
+  max-width: 400px;
+  width:100%;
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;  
+}
+.task-list table{
+  max-width: 300px;
+  width:100%;
+}
+.list-item-header{
+ background-color: white;
+ border-radius: 10px;
+ margin-top:5px;
+ color:darkgrey;
+}
+.list-item-body{
+  --width:33%;
+}
+.list-item-body td {
+  width: 20%;
+  color:navy;
+  font-size: 14px;
+}
+.list-item th{
+ font-size: clamp(1rem, -0.675rem + 6.333vw, 3.5rem);
+}
+.task-list li{
+  display:flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+.btn{
+  border:none;
+  margin:5px auto;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.btn-update{
+  background-color: lightskyblue;
+  border-radius: 10px 3px 3px 10px;
+  padding: 25px 5px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-delete{
+  background-color: lightsalmon;
+  border-radius:3px 10px 10px 3px;
+  padding: 25px 5px;
 }
+/*End list tasks section*/
+/*Insert new task section*/
+.container-new-task{
+  margin:0 auto;
+}
+.new-task-form{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form-element{
+  margin:5px auto;
+  width:400px;
+  height:30px;
+  border-radius: 10px;
+  border:none;
+}
+.btn-save{
+  background-color: lime;
+  padding:10px;
+  border-radius: 10px;
+  font-size: clamp(1rem, -0.675rem + 6.333vw, 1.5rem);
+  cursor: pointer;
+}
+/*End insert new task section*/
+/*Modal section*/
+.container-task-list{
+  position:relative; 
+}
+.container-task-list .modal-container {
+  position: absolute;
+  top: 0;
+  left:50%;
+  transform: translate(-50%, 0);
+  z-index: 1;
+  background: white;
+  width:450px;
+  height:400px;
+  border-radius:10px;
+}
+.display{
+  display:none;
+  flex-direction: column;
+  --justify-content: center;
+  --align-items: center;
+}
+ .update{
+  --background-color: lightskyblue;
+  border:1px solid;
+  border-radius: 10px;
+  padding: 5px 5px;
+  margin:10px 0;
+  cursor: pointer;
+ }
+ .update-header{
+   color:black;
+   margin-bottom: 50px;
+ }
+ .btn-save-update{
+   width:100px;
+   background-color: lime;
+   padding:10px;
+   border-radius: 10px;
+   font-size: clamp(1rem, -0.675rem + 6.333vw, 1.5rem);
+   cursor: pointer;
+ }
+ .btn-cancel{
+   width:100px;
+   background-color: tomato;
+   padding:10px;
+   border-radius: 10px;
+   font-size: clamp(1rem, -0.675rem + 6.333vw, 1.5rem);
+   cursor: pointer;
+ }
