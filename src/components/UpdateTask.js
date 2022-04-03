@@ -4,30 +4,49 @@ import '../App.css';
 
 const UpdateTask = (props) => {
 
-  const [task, setTask] = useState('');
+  const [taskId, setTaskId] = useState({ 
+    id: ''
+  });
+  
+  const [task, setTask] = useState({
+    id:'',
+    taskname: '',
+    datedue: '',
+    reminder: ''
+    }); 
   
 
   
-  const inputValues = async(e) => { 
-      e.preventDefault();
-      setTask(
-        {
-          'id': props.taskId,
-          'taskname': props.taskName,
-          'datedue': props.dateDue,
-          'reminder': props.reminDer
-        }
-      );
+  const inputValues = async () => { 
+     setTaskId({...taskId, id: props.taskId }); 
   }  
+  console.log(taskId.id)
 
-  console.log(task.id, task.taskname, task.datedue, task.reminder);
- 
+  const getTask = async () => {
+    await fetch("http://localhost/taskTrackerBackend/update.php?id=" + taskId.id)
+      .then((response) => response.json())
+      .then((tasks) => {
+        console.log(...tasks)
+        setTask({
+          id: tasks.id,
+          taskname: tasks.taskname,
+          datedue: tasks.datedue,
+          reminder: tasks.reminder
+        });
+      });
+  }
+console.log(task.taskname)
+  
+  
   useEffect(() => {
     inputValues();
-  },[]);
+    getTask();
+  }, []);
   
 
-  function showModal() {
+  function showModal(e) {
+      e.preventDefault();
+    getTask();
     document.querySelector('.display').style.display = 'flex';
   }
  
@@ -39,13 +58,13 @@ const UpdateTask = (props) => {
 
   return (
     <div>
-      <button type="button" onMouseOver={inputValues}  onClick={showModal} className="btn btn-update">UPDATE</button>
+      <button type="button"   onClick={showModal} className="btn btn-update">UPDATE</button>
     
        <div className="modal-container display">
             <h1 className="update-header">Update Task</h1>
         <form className="new-task-form">
-                <input className="form-element update" type="text" id='taskname' placeholder={task.taskname} />
-                <input className="form-element update" type="text" id="datedue"  placeholder={task.datedue} />
+                <input className="form-element update" type="text" id='taskname' placeholder={task.taskName} />
+                <input className="form-element update" type="text" id="datedue"  placeholder={task.dateDue} />
                 <span className="">
             <label htmlFor="reminder">Reminder: </label>
                     <input type="checkbox" name="reminder" value={'checked'? 1: 0} />
@@ -60,4 +79,4 @@ const UpdateTask = (props) => {
   )
 }
 
-export default UpdateTask
+export default UpdateTask;
